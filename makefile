@@ -1,4 +1,6 @@
 up:
+	@cp .env.example .env
+	@cp ./app/.env.example ./app/.env
 	@docker-compose -f docker-compose.yml up -d
 	@docker-compose exec php /bin/sh -c "composer install"
 	@docker-compose exec php /bin/sh -c "php bin/console doctrine:migrations:migrate"
