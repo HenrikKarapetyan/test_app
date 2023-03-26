@@ -12,10 +12,9 @@ class UserService
 {
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordEncoder,
-        private readonly UserRepository              $userRepository,
-        private readonly RoleService                 $roleService
-    )
-    {
+        private readonly UserRepository $userRepository,
+        private readonly RoleService $roleService
+    ) {
     }
 
     public function new(UserModel $userModel): User
@@ -36,19 +35,27 @@ class UserService
     }
 
     // this method we must use for only console command
+    /**
+     * @return User []
+     */
     public function getUsers(): array
     {
         return $this->userRepository->findAll();
     }
 
-    public function getById(string $getUserIdentifier): User
+    public function getById(string $id): User
     {
-        return $this->userRepository->find($getUserIdentifier);
+        return $this->userRepository->find($id);
+    }
+
+    public function getByUsername(string $username): User
+    {
+        return $this->userRepository->findOneBy(['username' => $username]);
     }
 
     public function setDefaultRole(UserModel &$user): void
     {
-        $role = $this->roleService->getRoleByName("ROLE_CLIENT");
+        $role = $this->roleService->getRoleByName('ROLE_CLIENT');
         $roleCollection = new ArrayCollection();
         $roleCollection->add($role);
         $user->setRoles($roleCollection);

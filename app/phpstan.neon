@@ -1,19 +1,20 @@
 parameters:
-    symfony:
-        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
-    doctrine:
-    	objectManagerLoader: tests/object-manager.php
-    level: 1
-    strictRules:
-    	disallowedLooseComparison: false
-    	booleansInConditions: false
-    	uselessCast: false
-    	requireParentConstructorCall: false
-    	disallowedConstructs: false
-    	overwriteVariablesWithLoop: false
-    	closureUsesThis: false
-    	matchingInheritedMethodNames: false
-    	numericOperandsInArithmeticOperators: false
-    	strictCalls: false
-    	switchConditionsMatchingType: false
-    	noVariableVariables: false
+	checkGenericClassInNonGenericObjectType: false
+	treatPhpDocTypesAsCertain: true
+	symfony:
+		container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+	strictRules:
+		disallowedLooseComparison: true
+		booleansInConditions: false
+		uselessCast: true
+		requireParentConstructorCall: true
+		disallowedConstructs: false
+		overwriteVariablesWithLoop: true
+		closureUsesThis: true
+		matchingInheritedMethodNames: true
+		numericOperandsInArithmeticOperators: true
+		strictCalls: true
+		switchConditionsMatchingType: true
+		noVariableVariables: true
+	doctrine:
+		objectManagerLoader: tests/object-manager.php

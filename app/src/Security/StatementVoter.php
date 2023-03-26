@@ -19,7 +19,7 @@ class StatementVoter extends Voter
 
     protected function supports(string $attribute, mixed $subject): bool
     {
-        if (!in_array($attribute, [self::EDIT, self::DELETE])) {
+        if (!in_array($attribute, [self::EDIT, self::DELETE], true)) {
             return false;
         }
         // only vote on `Post` objects

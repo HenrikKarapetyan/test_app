@@ -61,4 +61,15 @@ class StatementModel
     {
         $this->authorId = $authorId;
     }
+
+    /**
+     * @return array<string,int|string>
+     */
+    public function asArray(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'number' => $this->getNumber(),
+        ];
+    }
 }

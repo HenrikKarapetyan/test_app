@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 class UserModel
 {
     private string $name;
-
     private string $lastname;
 
     private string $username;
@@ -15,7 +14,6 @@ class UserModel
     private string $password;
 
     private string $email;
-
     private bool $isActive;
 
     private Collection $roles;
@@ -88,5 +86,19 @@ class UserModel
     public function setRoles(Collection $roles): void
     {
         $this->roles = $roles;
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public function asArray(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'lastname' => $this->getLastname(),
+            'username' => $this->getUsername(),
+            'email' => $this->getEmail(),
+            'password' => $this->getPassword(),
+        ];
     }
 }

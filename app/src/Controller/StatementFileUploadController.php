@@ -35,23 +35,21 @@ class StatementFileUploadController extends BaseApiController
             $imageFile = $form->get('image')->getData();
 
             $root_path = $this->getParameter('statement_images_directory');
-            if ($imageFile) {
-                $this->statementService->deleteImage($root_path, $statement);
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = md5($originalFilename);
-                $newFilename = $safeFilename.'-'.$id.'.'.$imageFile->guessExtension();
-                try {
-                    $imageFile->move($root_path.Statement::FILE_SAVE_PATH, $newFilename);
-                } catch (FileException $e) {
-                    throw new \Exception($e->getMessage());
-                }
-                $statement->setFileUrl($newFilename);
-                $this->statementService->save($statement);
-
-                return new JsonResponse(
-                    ['message' => 'image uploaded successfully']
-                );
+            $this->statementService->deleteImage($root_path, $statement);
+            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = md5($originalFilename);
+            $newFilename = $safeFilename.'-'.$id.'.'.$imageFile->guessExtension();
+            try {
+                $imageFile->move($root_path.Statement::FILE_SAVE_PATH, $newFilename);
+            } catch (FileException $e) {
+                throw new \Exception($e->getMessage());
             }
+            $statement->setFileUrl($newFilename);
+            $this->statementService->save($statement);
+
+            return new JsonResponse(
+                ['message' => 'image uploaded successfully']
+            );
         }
 
         return new JsonResponse($this->getErrorsFromForm($form), Response::HTTP_BAD_REQUEST);

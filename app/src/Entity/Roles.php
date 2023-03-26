@@ -16,7 +16,7 @@ class Roles
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
@@ -25,12 +25,21 @@ class Roles
     #[ORM\JoinColumn(nullable: true)]
     private ?self $parent_role = null;
 
+    /**
+     * @var Collection<Roles>
+     */
     #[ORM\OneToMany(mappedBy: 'parent_role', targetEntity: self::class)]
     private Collection $childs;
 
+    /**
+     * @var Collection<User>
+     */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'roles')]
     private Collection $users;
 
+    /**
+     * @var Collection<Permissions>
+     */
     #[ORM\ManyToMany(targetEntity: Permissions::class, inversedBy: 'roles')]
     private Collection $permissions;
 

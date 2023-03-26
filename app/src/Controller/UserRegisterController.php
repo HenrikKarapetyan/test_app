@@ -24,11 +24,12 @@ class UserRegisterController extends BaseApiController
         $form->submit($data);
         if ($form->isValid()) {
             $user = $form->getData();
-            /**
+            /*
              * @var $user UserModel
              */
             $userService->setDefaultRole($user);
             $userService->new($user);
+
             return new JsonResponse(['message' => 'created successfully'], Response::HTTP_ACCEPTED);
         }
 

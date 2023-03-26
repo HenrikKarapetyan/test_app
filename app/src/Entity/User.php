@@ -33,9 +33,11 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
 
     #[ORM\Column(name: 'is_active', type: 'boolean')]
     private bool $isActive;
-
+    /**
+     * @var ArrayCollection<Roles>|Collection<Roles>
+     */
     #[ORM\ManyToMany(targetEntity: Roles::class, inversedBy: 'users')]
-    private Collection $roles;
+    private Collection|ArrayCollection $roles;
 
     public function __construct()
     {

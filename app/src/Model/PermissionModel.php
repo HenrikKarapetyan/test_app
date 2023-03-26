@@ -5,6 +5,7 @@ namespace App\Model;
 class PermissionModel
 {
     private ?string $name = null;
+
     private ?string $description = null;
 
     public function getName(): ?string

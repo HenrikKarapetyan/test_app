@@ -21,7 +21,7 @@ class StatementService
         $statement = new Statement();
         $statement->setName($statementModel->getName());
         $statement->setNumber($statementModel->getNumber());
-        if (null != $statementModel->getAuthor()) {
+        if (null !== $statementModel->getAuthor()) {
             $statement->setAuthor($statementModel->getAuthor());
         } else {
             $author = $this->userService->getById($statementModel->getAuthorId());
@@ -49,7 +49,7 @@ class StatementService
         return $statement;
     }
 
-    public function update(Statement $statement, StatementModel $statementModel)
+    public function update(Statement $statement, StatementModel $statementModel): Statement
     {
         $statement->setName($statementModel->getName());
         $statement->setNumber($statementModel->getNumber());

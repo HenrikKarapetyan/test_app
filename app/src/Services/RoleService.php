@@ -25,6 +25,9 @@ class RoleService
     }
 
     // this method using for only console command
+    /**
+     * @return Roles[]
+     */
     public function getAll(): array
     {
         return $this->rolesRepository->findAll();
@@ -40,6 +43,6 @@ class RoleService
 
     public function getRoleByName(string $role_name): ?Roles
     {
-        return $this->rolesRepository->findOneBy(['name'=>$role_name]);
+        return $this->rolesRepository->findOneBy(['name' => $role_name]);
     }
 }

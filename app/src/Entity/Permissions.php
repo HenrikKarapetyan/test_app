@@ -16,13 +16,15 @@ class Permissions
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
-
+    /**
+     * @var Collection<Roles>|ArrayCollection<Roles>
+     */
     #[ORM\ManyToMany(targetEntity: Roles::class, mappedBy: 'permissions')]
-    private Collection $roles;
+    private Collection|ArrayCollection $roles;
 
     public function __construct()
     {
@@ -34,16 +36,14 @@ class Permissions
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getDescription(): ?string

@@ -26,7 +26,7 @@ class Statement
 
     #[ORM\ManyToOne(inversedBy: 'statements')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    private User $author;
 
     public function getId(): int
     {
@@ -69,15 +69,13 @@ class Statement
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 }

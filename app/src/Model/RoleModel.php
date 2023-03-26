@@ -7,6 +7,7 @@ use App\Entity\Roles;
 class RoleModel
 {
     private ?string $name = null;
+
     private ?string $description = null;
     private ?Roles $parent_role = null;
 
